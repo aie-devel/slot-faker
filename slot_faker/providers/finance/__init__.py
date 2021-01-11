@@ -103,3 +103,14 @@ class Provider(BaseProvider):
         'XPeng': 'XPEV',
         'Vaxart': 'VXRT'
     }
+
+    def stock(self):
+        return self.random_element(
+            [*self.stocks.keys(), *self.stocks.values()]
+        )
+
+    def stock_name(self):
+        return self.random_element([*self.stocks.keys()])
+
+    def stock_symbol(self):
+        return self.stocks.get(self.stock_name())

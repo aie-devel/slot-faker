@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "slot-faker"
-version = "0.1.1"
+version = "0.1.2"
 description = "Generates fake data"
 authors = ["welocalize <aie-devel@welocalize.com>"]
 
@@ -13,9 +13,19 @@ lxml = "^4.6.2"
 html5lib = "^1.1"
 bs4 = "^0.0.1"
 inflect = "^5.0.2"
+faker-wifi-essid = "^0.2.0"
+dateparser = "^1.0.0"
+arrow = "^0.17.0"
+timefhuman = "^0.0.5"
+sutime = "^1.0.1"
+JPype1 = "^1.2.1"
+setuptools-scm = "^5.0.1"
+humanize = "^3.2.0"
+wolframalpha = "^4.1.1"
+pytrends = "^4.7.3"
+num2words = "^0.5.10"
 
 [tool.poetry.dev-dependencies]
-pytest = "^4.6"
 ipython = "^7.19.0"
 
 [build-system]

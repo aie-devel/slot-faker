@@ -2,6 +2,7 @@ from faker.providers import BaseProvider
 from datetime import datetime
 from time import mktime
 import random
+import humanize
 
 
 class Provider(BaseProvider):
@@ -20,7 +21,10 @@ class Provider(BaseProvider):
     open = datetime.now().astimezone().replace(hour=8, minute=0)
     close = datetime.now().astimezone().replace(hour=17, minute=0)
 
-    def _personalize(self, time: str):
+    def _personalize(self, time: datetime, pattern: str):
+        if random.getrandbits(1):
+            return humanize.naturaltime(time)
+        time = time.strftime(pattern)
         if 'M' in time:
             if random.getrandbits(1):
                 time = time.lower()
@@ -44,5 +48,5 @@ class Provider(BaseProvider):
             m = self.random_element(parts)
             bt = bt.replace(minute=m)
         return self._personalize(
-            bt.strftime(pattern)
+            bt, pattern
         )
