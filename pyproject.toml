@@ -8,7 +8,6 @@ authors = ["welocalize <aie-devel@welocalize.com>"]
 python = "^3.8"
 Faker = "^5.1.0"
 StringGenerator = "^0.3.4"
-pandas = "^1.2.0"
 lxml = "^4.6.2"
 html5lib = "^1.1"
 bs4 = "^0.0.1"
@@ -24,6 +23,8 @@ humanize = "^3.2.0"
 wolframalpha = "^4.1.1"
 pytrends = "^4.7.3"
 num2words = "^0.5.10"
+numpy = "^1.19.5"
+pandas = "^1.2.0"
 
 [tool.poetry.dev-dependencies]
 ipython = "^7.19.0"

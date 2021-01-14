@@ -22,8 +22,8 @@ class Provider(BaseProvider):
     close = datetime.now().astimezone().replace(hour=17, minute=0)
 
     def _personalize(self, time: datetime, pattern: str):
-        if random.getrandbits(1):
-            return humanize.naturaltime(time)
+        #if random.getrandbits(1):
+        #    return humanize.naturaltime(time)
         time = time.strftime(pattern)
         if 'M' in time:
             if random.getrandbits(1):

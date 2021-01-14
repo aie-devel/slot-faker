@@ -114,3 +114,7 @@ class Provider(BaseProvider):
 
     def stock_symbol(self):
         return self.stocks.get(self.stock_name())
+
+    def random_dollars(self, min: int = 50, max: int = 10000, step: int = 10):
+        amount = self.random_int(min, max, step)
+        return f"${amount:.2f}"
