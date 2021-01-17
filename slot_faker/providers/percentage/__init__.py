@@ -1,4 +1,4 @@
-from faker.providers import BaseProvider
+from slot_faker.providers import BaseProvider
 import math
 import random
 
@@ -10,3 +10,8 @@ class Provider(BaseProvider):
         if random.getrandbits(1):
             return f"{percent:.0f}%"
         return f"{percent:.01f}%"
+
+
+    def percentage_less_than_25(self):
+        percent = self.random_int(5, 25, 5)
+        return f"{percent}%"

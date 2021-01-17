@@ -1,4 +1,4 @@
-from faker.providers import BaseProvider
+from slot_faker.providers import BaseProvider
 
 
 class Provider(BaseProvider):
@@ -118,3 +118,8 @@ class Provider(BaseProvider):
     def random_dollars(self, min: int = 50, max: int = 10000, step: int = 10):
         amount = self.random_int(min, max, step)
         return f"${amount:.2f}"
+
+    def common_currency(self):
+        return self.random_element(
+            ('USD', 'GBP', 'Euro', 'JPY', 'AUD')
+        )

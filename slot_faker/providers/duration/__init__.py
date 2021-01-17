@@ -1,4 +1,4 @@
-from faker.providers import BaseProvider
+from slot_faker.providers import BaseProvider
 import dateparser
 import humanize
 
@@ -19,6 +19,6 @@ class Provider(BaseProvider):
 
     def approximate_duration(self, nl_desc: str):
         span = dateparser.parse(nl_desc)
-
+        print(span)
         carrier = self.random_element(self.carrier_phrases)
         return carrier.format(humanize.naturaldelta(span))

@@ -1,4 +1,4 @@
-from faker.providers import BaseProvider
+from slot_faker.providers import BaseProvider
 from datetime import datetime
 from time import mktime
 import random

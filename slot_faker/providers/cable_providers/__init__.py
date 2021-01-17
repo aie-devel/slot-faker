@@ -1,4 +1,4 @@
-from faker.providers import BaseProvider
+from slot_faker.providers import BaseProvider
 
 
 class Provider(BaseProvider):

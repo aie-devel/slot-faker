@@ -1,4 +1,5 @@
-from faker.providers import BaseProvider
+from slot_faker.providers import BaseProvider
+import random
 
 
 class Provider(BaseProvider):
@@ -544,3 +545,129 @@ class Provider(BaseProvider):
         'Dawson\'s Creek',
         'SportsCenter'
     )
+
+    songs = {
+        'Stairway to Heaven': 'Led Zeppelin',
+        'Bohemian Rhapsody': 'Queen',
+        'Hey Jude': 'The Beatles',
+        'Hotel California': 'The Eagles',
+        'Imagine': 'John Lennon',
+        'Let It Be': 'The Beatles',
+        'Smells Like Teen Spirit': 'Nirvana',
+        'Like a Rolling Stone': 'Bob Dylan',
+        'Yesterday': 'The Beatles',
+        'A Day in the Life': 'The Beatles',
+        'Billie Jean': 'Michael Jackson',
+        'Comfortably Numb': 'Pink Floyd',
+        'Freebird': 'Lynyrd Skynyrd',
+        'Beat It': 'Michael Jackson',
+        'All Along the Watchtower': 'Jimi Hendrix',
+        'Thriller': 'Michael Jackson',
+        'Wish You Were Here': 'Pink Floyd',
+        'American Pie': 'Don Mclean',
+        'Satisfaction': 'The Rolling Stones',
+        'Piano Man': 'Billy Joel',
+        'Kashmir': 'Led Zeppelin',
+        'Sympathy for the Devil': 'The Rolling Stones',
+        'Strawberry Fields Forever': 'The Beatles',
+        'Bridge Over Troubled Waters': 'Simon And Garfunkel',
+        'November Rain': 'Guns N\' Roses',
+        'God Only Knows': 'The Beach Boys',
+        'Wonderwall': 'Oasis',
+        'Sweet Child O\' Mine': 'Guns N Roses',
+        'Back in Black': 'Ac/Dc',
+        'Gimme Shelter': 'The Rolling Stones',
+        'Dream On': 'Aerosmith',
+        'Knockin\' On Heaven\'s Door': 'Bob Dylan',
+        'What a Wonderful World': 'Louis Armstrong',
+        'Man in the Mirror': 'Michael Jackson',
+        'Light My Fire': 'The Doors',
+        'Johnny B. Goode': 'Chuck Berry',
+        'Another Brick in the Wall': 'Pink Floyd',
+        'Good Vibrations': 'The Beach Boys',
+        'Purple Haze': 'Jimi Hendrix',
+        'Losing My Religion': 'R.E.M.',
+        'Everlong': 'Foo Fighters',
+        'With or Without You': 'U2',
+        'Blowin\' in the Wind': 'Bob Dylan',
+        'Born to Run': 'Bruce Springsteen',
+        'Tears in Heaven': 'Eric Clapton',
+        'No Woman, No Cry': 'Bob Marley',
+        'One': 'Metallica',
+        'Black or White': 'Michael Jackson',
+        'Voodoo Child (slight return)': 'Jimi Hendrix',
+        'London Calling': 'The Clash',
+        'Tiny Dancer': 'Elton John',
+        'The End': 'The Doors',
+        'Baba O\'Riley': 'The Who',
+        'Smooth Criminal': 'Michael Jackson',
+        'House of the Rising Son': 'The Animals',
+        'Something': 'The Beatles',
+        'Paint it Black': 'The Rolling Stones',
+        'Sweet Home Alabama': 'Lynyrd Skynyrd',
+        'Hang On': 'Teenage Fanclub',
+        'Moonlight Sonata': 'Ludwig Van Beethoven',
+        'Always': 'Bon Jovi',
+        'Redemption Song': 'Bob Marley',
+        'Respect': 'Aritha Franklin',
+        'Layla': 'Derek And The Dominos',
+        'Mr. Tambourine Man': 'Bob Dylan',
+        'Every Breath You Take': 'The Police',
+        'Purple Rain': 'Prince',
+        'Alive': 'Pearl Jam',
+        'Over the Rainbow': 'Judy Garland',
+        'Hallelujah': 'Jeff Buckley',
+        'Won\'t Get Fooled Again': 'The Who',
+        'Clair De Lune': 'Claude Debussy',
+        'Paradise City': 'Guns N Roses',
+        'We Will Rock You/We Are the Champions': 'Queen',
+        'Behind Blue Eyes': 'The Who',
+        'Lose Yourself': 'Eminem',
+        'Nothing Else Matters': 'Metallica',
+        'Come Together': 'The Beatles',
+        'Shine on You Crazy Diamond': 'Pink Floyd',
+        'Dust in the Wind': 'Kansas',
+        'Changes': 'Tupac Shakur',
+        'Carry On My Wayward Son': 'Kansas',
+        'Fur Elise': 'Ludwig Van Beethoven',
+        'Me and Bobby McGee': 'Janis Joplin',
+        'Let\'s Get it On': 'Marvin Gaye',
+        'Born to be Wild': 'Steppenwolf',
+        'Eleanor Rigby': 'The Beatles',
+        'Don’t Stop Believing': 'Journey',
+        'Lonely Boy': 'Andrew Gold',
+        'Life On Mars': 'David Bowie',
+        'Master of Puppets': 'Metallica',
+        'Under the Bridge': 'Red Hot Chili Peppers',
+        'What\'s Going On': 'Marvin Gaye',
+        'My Generation': 'The Who',
+        'Blue': 'The Jayhawks',
+        'Norwegian Wood': 'The Beatles',
+        'At Last': 'Etta James',
+        'Livin On a Prayer': 'Bon Jovi',
+        'Don\'t Give Up On Me': 'Solomon Burke',
+    }
+
+    def actor(self):
+        return self.random_element(self.actors)
+
+    def athlete(self):
+        return self.random_element(self.athletes)
+
+    def app(self):
+        return self.random_element(self.apps)
+
+    def video_game(self):
+        return self.random_element(self.video_games)
+
+    def television_show(self):
+        return self.random_element(self.television_shows)
+
+    def movie(self):
+        return self.random_element(self.movies)
+
+    def song(self):
+        song = self.random_element(tuple(self.songs.keys()))
+        if random.getrandbits(1):
+            return f"{song} by {self.songs.get(song)}"
+        return song
