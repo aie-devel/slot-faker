@@ -12,6 +12,9 @@ __version__ = '0.1.0'
 
 class CustomValues:
     def __init__(self, **kwargs):
+        self._add_methods(**kwargs)
+
+    def _add_methods(self, **kwargs):
         for method_name, values_list in kwargs.items():
             object.__setattr__(
                 self,
@@ -31,11 +34,15 @@ class SlotFaker(Faker):
             for row in reader:
                 method_name, *values = row
                 custom_values.setdefault(method_name, []).extend(values)
-        object.__setattr__(
-            self,
-            '_custom_values',
-            CustomValues(**custom_values)
-        )
+        _custom_values = getattr(self, '_custom_values', None)
+        if not _custom_values:
+            _custom_values = CustomValues()
+            object.__setattr__(
+                self,
+                '_custom_values',
+                _custom_values
+            )
+        _custom_values._add_methods(**custom_values)
         for method_name in custom_values:
             object.__setattr__(
                 self,
