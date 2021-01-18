@@ -1,6 +1,6 @@
 from slot_faker.providers import BaseProvider
 import string
-from rypy import find
+from rypy import rex
 import itertools
 import re
 
@@ -95,7 +95,7 @@ class Provider(BaseProvider):
 
     def _get_formats(self, format_def: str):
         pattern = r'(\()?(?P<token>(\?|#|\[[?#*A-Z]+\]))(\{(?P<min>[\d]+)(,(?P<max>[\d]+))\})?(\)\{(?P<max_len>[\d]+(,[\d]+)?)\})?'
-        tokens = find.rexex(pattern, format_def)
+        tokens = rex.capture_all(pattern, format_def)
         min_len, max_len = 0, 100
         if (match_len := tokens.get('max_len')):
             match_len = [m for m in match_len if m]
