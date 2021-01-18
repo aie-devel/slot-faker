@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "slot-faker"
-version = "0.1.6"
+version = "0.1.7"
 description = "Generates fake data"
 authors = ["welocalize <aie-devel@welocalize.com>"]
 
