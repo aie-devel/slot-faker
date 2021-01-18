@@ -811,6 +811,19 @@ url = "https://pypi.rypy.tk/simple"
 reference = "rypy"
 
 [[package]]
+name = "rypy"
+version = "0.1.4"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.source]
+type = "legacy"
+url = "https://pypi.rypy.tk/simple"
+reference = "rypy"
+
+[[package]]
 name = "setuptools-scm"
 version = "5.0.1"
 description = "the blessed package to manage your versions by scm tags"
@@ -1064,7 +1077,7 @@ reference = "rypy"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "6af3b651df4c45212c76b28314b72cb3fca988e0bcb8f520d437cef413b6ceb0"
+content-hash = "c516d177ca59275477cceac9a4a9b461eb0ee34f4207cd5079f1acf0b90540ec"
 
 [metadata.files]
 appnope = [
@@ -1471,6 +1484,10 @@ requests = [
     {file = "ruamel.yaml.clib-0.2.2-cp39-cp39-win32.whl", hash = "sha256:46d6d20815064e8bb023ea8628cfb7402c0f0e83de2c2227a88097e239a7dffd"},
     {file = "ruamel.yaml.clib-0.2.2-cp39-cp39-win_amd64.whl", hash = "sha256:6c0a5dc52fc74eb87c67374a4e554d4761fd42a4d01390b7e868b30d21f4b8bb"},
     {file = "ruamel.yaml.clib-0.2.2.tar.gz", hash = "sha256:2d24bd98af676f4990c4d715bcdc2a60b19c56a3fb3a763164d2d8ca0e806ba7"},
+]
+rypy = [
+    {file = "rypy-0.1.4-py3-none-any.whl", hash = "md5:dd4d5a5968e368c78ec802ca27792624"},
+    {file = "rypy-0.1.4.tar.gz", hash = "md5:c5a73367ae275560506c033686f0a2cc"},
 ]
 setuptools-scm = [
     {file = "setuptools_scm-5.0.1-py2.py3-none-any.whl", hash = "sha256:62fa535edb31ece9fa65dc9dcb3056145b8020c8c26c0ef1018aef33db95c40d"},

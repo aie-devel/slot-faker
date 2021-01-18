@@ -1,5 +1,6 @@
 from slot_faker.providers import BaseProvider
 import string
+from rypy import find
 import itertools
 import re
 
@@ -21,17 +22,6 @@ def permutate(poss_list):
             ]
         else:
             raise ValueError
-
-
-def get_char_set(chars: list, min: int, max: int = None):
-    min = int(min)
-    max = int(max) or min
-    max += 1
-    char_set = []
-    for i in range(min, max):
-        char_set.extend(permutate(list(itertools.repeat([*chars], i))))
-    return char_set
-
 
 
 class Provider(BaseProvider):
@@ -92,34 +82,43 @@ class Provider(BaseProvider):
 
     def drivers_license(self, state: str = None):
         state = state or self.random_element(self.states.keys())
-        #formats = self._get_formats(self.states.get(state))
-        return 'FC18960'
-        '''
+        formats = self._get_formats(
+            self.random_element(
+                self.states.get(state)
+            )
+        )
+        format = self.random_element(formats)
         return self.bothify(
-            self.generator.parse(formats),
+            self.generator.parse(format),
             letters=string.ascii_uppercase
         )
-        '''
 
-    '''
-    def _get_formats(self, format):
-        results = []
-        for part in format:
-            parts = [
-                subpart
-                for subpart in re.split(r'[{,}]', part)
-                if subpart
+    def _get_formats(self, format_def: str):
+        pattern = r'(\()?(?P<token>(\?|#|\[[?#*A-Z]+\]))(\{(?P<min>[\d]+)(,(?P<max>[\d]+))\})?(\)\{(?P<max_len>[\d]+(,[\d]+)?)\})?'
+        tokens = find.rexex(pattern, format_def)
+        min_len, max_len = 0, 100
+        if (match_len := tokens.get('max_len')):
+            match_len = [m for m in match_len if m]
+            if match_len:
+                min_len, max_len = [int(m) for m in match_len[0].split(',')]
+        max_len += 1
+        permutations = []
+        for token, min, max in zip(tokens.get('token'), tokens.get('min'), tokens.get('max')):
+            min = int(min) or 1
+            max = int(max) or min
+            max += 1
+            char_set = list(re.sub(r'[\[\]]', '', token))
+            base_token_set = [
+                char_set for _ in range(1, min + 1)
             ]
-            batches = [parts[i:i+3] for i in range(0, len(parts), 3)]
-            string_set = []
-            for char, min, max in batches:
-                char_set = get_char_set(char, min, max)
-                char_set = [char_set[0][0], *char_set[1:]]
-                string_set.append(char_set)
-            results.extend(permutate(string_set))
-        results = [
-            strf if isinstance(strf, str) else *strf
-            for strf in results
-        ]
-        return results
-        '''
+            token_perms = [permutate(base_token_set)] if len(base_token_set) > 1 else base_token_set
+            for i in range(min + 1, max):
+                token_perms.append(char_set)
+            if len(token_perms) > 1:
+                token_perms = permutate(token_perms)
+            permutations.append(token_perms)
+        for i, sublist in enumerate(permutations):
+            if not isinstance(sublist[0], str):
+                permutations[i] = sublist[0]
+        result = permutate(permutations) if len(permutations) > 1 else permutations[0]
+        return result
