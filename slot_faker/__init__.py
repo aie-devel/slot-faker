@@ -118,7 +118,8 @@ class SlotFaker(Faker):
                     )
                 custom_values[method_name].setdefault('values', []).extend(values)
         '''
-        for method_name, method in self._custom_values.methods.items():
+        self._custom_values = _custom
+        if for method_name, method in self._custom_values.methods.items():
             object.__setattr__(
                 self,
                 method_name,
