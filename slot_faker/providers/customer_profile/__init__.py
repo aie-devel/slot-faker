@@ -22,14 +22,24 @@ class Provider(BaseProvider):
         email_domain = self.generator.free_email_domain()
         email_address = f"{email_user_name}@{email_domain}"
         birthdate = self.generator.date_of_birth()
+        phone_number = self.numerify(
+            self.random_element(
+                ('###-###-####', '(###)-###-####', '##########', '###-####')
+            )
+        )
 
         return {
             'first_name': first_name,
             'last_name': last_name,
-            'email_address': email_address,
+            'email': email_address,
+            'phone_number': phone_number,
             'ssn': self.generator.ssn(),
             'account_number': self.generator.account_number(),
-            'birthdate': birthdate,
+            'birthdate': birthdate.strftime(
+                self.random_element(
+                    ('%d/%m/%Y', '%d-%m-%Y', '%d/%m/%y', '%d-%m-%y')
+                )
+            ),
             'postal_address': self.generator.postal_address(),
             'user_name': f"{email_user_name}{birthdate.year}",
             'password': self.generator.password(special_chars=False)
