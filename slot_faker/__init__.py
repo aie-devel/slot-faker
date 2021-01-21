@@ -100,7 +100,7 @@ class SlotFaker(Faker):
         self.domain = domain
         self._custom_values = None
         if config:
-            self.load_custom_values(CustomValues(**config))
+            self.load_custom(CustomValues(**config))
 
     def load_custom(self, _custom: CustomValues):
         '''
