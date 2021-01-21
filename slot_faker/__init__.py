@@ -95,14 +95,15 @@ class CustomValues:
 
 
 class SlotFaker(Faker):
-    def __init__(self, domain: str = None, custom: Path = None, custom_dict: dict = None):
+    def __init__(self, domain: str = None, **config):
         super().__init__(includes=PROVIDERS)
         self.domain = domain
-        self._custom_values = CustomValues()
-        if custom:
-            self.load_custom_values(custom, custom_dict=custom_dict)
+        self._custom_values = None
+        if config:
+            self.load_custom_values(CustomValues(**config))
 
-    def load_custom(self, csv_file: Path, custom_dict: dict = None):
+    def load_custom(self, _custom: CustomValues):
+        '''
         custom_values = {**custom_dict} or {}
         with open(csv_file, 'r') as csv_file:
             reader = csv.reader(csv_file)
@@ -116,8 +117,8 @@ class SlotFaker(Faker):
                         }
                     )
                 custom_values[method_name].setdefault('values', []).extend(values)
-        self._custom_values._add_methods(custom_values)
-        for method_name, method in self._custom_values._get_methods().items():
+        '''
+        for method_name, method in self._custom_values.methods.items():
             object.__setattr__(
                 self,
                 method_name,
